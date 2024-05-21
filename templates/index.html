@@ -1,0 +1,29 @@
+{% include "header.html" %}
+
+<div class="container form-container">
+  <h2>Your task!</h2>
+  <form method="POST">
+    {{ todo_form.hidden_tag() }}
+    <div class="form-group">
+      {{ todo_form.todo_input(class="form-control large-input") }}
+    </div>
+
+  </form>
+</div>
+
+<div class="container form-container">
+  {% if todo_list %}
+    <h2>All Your Task List</h2>
+    <form method="POST">
+      {% for item in todo_list %}
+        <label class="containers">{{ item }}
+          <input type="checkbox" name="todo_item" value="{{ item }}">
+          <span class="checkmark"></span>
+        </label>
+      {% endfor %}
+      <button type="submit" class="btn btn-secondary">Submit Checked</button>
+    </form>
+  {% endif %}
+</div>
+
+{% include "footer.html" %}

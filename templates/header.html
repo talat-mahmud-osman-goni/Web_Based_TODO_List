@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Add Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+
+<div class="topnav">
+  <a href="{{ url_for('new_list') }}">New List</a>
+
+    {% if not current_user.is_authenticated: %}
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('register') }}">Register</a>
+    {% else: %}
+      <a href="{{ url_for('save_list') }}">Save This List</a>
+      <a href="{{ url_for('my_list', user_id=current_user.id) }}">My List</a>
+      <a href="{{ url_for('logout') }}">Log Out</a>
+    {% endif %}
+</div>
